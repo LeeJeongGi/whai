@@ -2,6 +2,7 @@ package com.y2829.whai.api.dto;
 
 import com.y2829.whai.api.entity.Review;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -15,6 +16,7 @@ public class ReviewDto {
 
     @Setter
     @Getter
+    @NoArgsConstructor
     public static class PostReviewRequest {
         @NotNull
         private Long userId;
