@@ -24,13 +24,13 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client:2.6.6'
 	implementation 'org.springframework.boot:spring-boot-starter-security:2.6.6'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor:2.6.6'
-  
-	implementation 'junit:junit:4.13.1'
 
   	compileOnly 'org.projectlombok:lombok'
     
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
 
 	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
 
