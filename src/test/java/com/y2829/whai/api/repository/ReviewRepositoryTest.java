@@ -50,7 +50,7 @@ public class ReviewRepositoryTest {
         mentorRepository.save(mentor);
     }
 
-    @DisplayName("CreateReview")
+    @DisplayName("Create Review Repository")
     @Test
     public void createReview() {
         //given
@@ -64,7 +64,7 @@ public class ReviewRepositoryTest {
         assertThat(saveReview.getId()).isEqualTo(findReview.get().getId());
     }
 
-    @DisplayName("UpdateReview")
+    @DisplayName("Update Review Repository")
     @Test
     public void updateReview() {
         //given
@@ -87,7 +87,7 @@ public class ReviewRepositoryTest {
         assertThat(updateReview.getContent()).isEqualTo("Not Good");
     }
 
-    @DisplayName("List Of Review")
+    @DisplayName("Review List Repository")
     @Test
     public void listOfReviews() {
         //given
@@ -100,7 +100,7 @@ public class ReviewRepositoryTest {
         assertThat(findReviews.size()).isEqualTo(5);
     }
 
-    @DisplayName("Delete Review")
+    @DisplayName("Delete Review Repository")
     @Test
     public void deleteReview() {
         //given

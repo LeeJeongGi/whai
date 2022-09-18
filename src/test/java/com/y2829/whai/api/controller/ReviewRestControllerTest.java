@@ -66,9 +66,9 @@ public class ReviewRestControllerTest {
         mentor.setUser(user);
     }
 
-    @DisplayName("Review Create")
+    @DisplayName("Create Review Controller")
     @Test
-    public void reviewCreate() throws Exception {
+    public void createReview() throws Exception {
         //given
         PostReviewRequest request = new PostReviewRequest();
         request.setUserId(1L);
@@ -93,7 +93,7 @@ public class ReviewRestControllerTest {
         MvcResult mvcResult = resultAction.andExpect(status().isOk()).andReturn();
     }
 
-    @DisplayName("Review list")
+    @DisplayName("Review list Controller")
     @Test
     public void listOfReview() throws Exception {
         //given
@@ -123,9 +123,9 @@ public class ReviewRestControllerTest {
 //        assertThat(mvcResult.getResponse().getContentAsString())
     }
 
-    @DisplayName("Review Update")
+    @DisplayName("Update Review Controller")
     @Test
-    public void reviewUpdateTest() throws Exception {
+    public void updateReview() throws Exception {
         //given
         PatchReviewRequest request = new PatchReviewRequest();
         request.setUserId(user.getId());
@@ -151,9 +151,9 @@ public class ReviewRestControllerTest {
         System.out.println("mvcResult = " + mvcResult);
     }
 
-    @DisplayName("Review Delete")
+    @DisplayName("Delete Review Controller")
     @Test
-    public void reviewDeleteTest() throws Exception {
+    public void deleteReview() throws Exception {
         //given
         Long removeReviewId = 1L;
 

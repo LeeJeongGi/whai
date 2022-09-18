@@ -40,7 +40,7 @@ public class MentorRepositoryTest {
         userRepository.save(user);
     }
 
-    @DisplayName("Create Mentor")
+    @DisplayName("Create Mentor Repository")
     @Test
     public void createMentor() {
         //given
@@ -54,7 +54,7 @@ public class MentorRepositoryTest {
         assertThat(saveMentor.getId()).isEqualTo(findReview.get().getId());
     }
 
-    @DisplayName("Update Mentor")
+    @DisplayName("Update Mentor Repository")
     @Test
     public void updateMentor() {
         //given
@@ -77,9 +77,9 @@ public class MentorRepositoryTest {
         assertThat(updateMentor.getDescription()).isEqualTo("hello");
     }
 
-    @DisplayName("listOfMentor")
+    @DisplayName("Mentor List Repository")
     @Test
-    public void listOfMenters() {
+    public void listOfMentors() {
         //given
         saveMentors();
 
@@ -90,7 +90,7 @@ public class MentorRepositoryTest {
         assertThat(mentors.size()).isEqualTo(5);
     }
 
-    @DisplayName("deleteMentor")
+    @DisplayName("Delete Mentor Repository")
     @Test
     public void deleteMentor() {
         //given

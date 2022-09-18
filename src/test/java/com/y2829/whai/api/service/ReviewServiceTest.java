@@ -7,6 +7,7 @@ import com.y2829.whai.api.repository.MentorRepository;
 import com.y2829.whai.api.repository.ReviewRepository;
 import com.y2829.whai.api.repository.UserRepository;
 import com.y2829.whai.api.service.impl.ReviewServiceImpl;
+import com.y2829.whai.api.util.CommonUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -71,9 +71,9 @@ public class ReviewServiceTest {
         mentor.setUser(user);
     }
 
-    @DisplayName("Review Create")
+    @DisplayName("Create Review Service")
     @Test
-    public void reviewCreateTest() {
+    public void createReview() {
         //given
         Long reviewId = 1L;
         PostReviewRequest request = new PostReviewRequest();
@@ -92,7 +92,7 @@ public class ReviewServiceTest {
         verify(reviewService, times(1)).saveReview(request);
     }
 
-    @DisplayName("updateReview")
+    @DisplayName("Update Review Service")
     @Test
     public void updateReview() {
         //given
@@ -113,7 +113,7 @@ public class ReviewServiceTest {
         assertThat(result).isEqualTo(1L);
     }
 
-    @DisplayName("ReviewList")
+    @DisplayName("Review List Service")
     @Test
     public void listOfReviews() {
         //given
@@ -121,7 +121,7 @@ public class ReviewServiceTest {
         Page<Review> pages = new PageImpl<>(reviews);
 
         doReturn(pages).when(reviewService).findAll(any(Pageable.class));
-        Pageable pageable = getPageable();
+        Pageable pageable = CommonUtil.getPageable();
 
         //when
         Page<Review> results = reviewService.findAll(pageable);
@@ -130,7 +130,7 @@ public class ReviewServiceTest {
         assertThat(results.getContent().size()).isEqualTo(5);
     }
 
-    @DisplayName("DeleteReview")
+    @DisplayName("Delete Review Service")
     @Test
     public void deleteReview() {
         //given
@@ -143,58 +143,6 @@ public class ReviewServiceTest {
 
         //then
         assertThat(result).isEqualTo(1);
-    }
-
-    private Pageable getPageable() {
-
-        Pageable pageable = new Pageable() {
-            @Override
-            public int getPageNumber() {
-                return 0;
-            }
-
-            @Override
-            public int getPageSize() {
-                return 0;
-            }
-
-            @Override
-            public long getOffset() {
-                return 0;
-            }
-
-            @Override
-            public Sort getSort() {
-                return null;
-            }
-
-            @Override
-            public Pageable next() {
-                return null;
-            }
-
-            @Override
-            public Pageable previousOrFirst() {
-                return null;
-            }
-
-            @Override
-            public Pageable first() {
-                return null;
-            }
-
-            @Override
-            public Pageable withPage(int pageNumber) {
-                return null;
-            }
-
-            @Override
-            public boolean hasPrevious() {
-                return false;
-            }
-        };
-
-        return pageable;
     }
 
     private List<Review> getReviews() {

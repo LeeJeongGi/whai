@@ -1,14 +1,10 @@
 package com.y2829.whai.api.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.y2829.whai.api.dto.MentorDto;
-import com.y2829.whai.api.dto.ReviewDto;
 import com.y2829.whai.api.entity.Mentor;
-import com.y2829.whai.api.entity.Review;
 import com.y2829.whai.api.entity.User;
 import com.y2829.whai.api.service.MentorService;
-import com.y2829.whai.api.service.MentorServiceTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,7 +29,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.y2829.whai.api.dto.MentorDto.*;
+import static com.y2829.whai.api.dto.MentorDto.PatchMentorRequest;
+import static com.y2829.whai.api.dto.MentorDto.PostMentorRequest;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -67,7 +64,7 @@ public class MentorRestControllerTest {
 
     }
 
-    @DisplayName("create Mentor")
+    @DisplayName("Create Mentor Controller")
     @Test
     public void mentorCreate() throws Exception {
         //given
@@ -94,7 +91,7 @@ public class MentorRestControllerTest {
 
     }
 
-    @DisplayName("Mentor Update")
+    @DisplayName("Update Mentor Controller")
     @Test
     public void mentorUpdate() throws Exception {
         //given
@@ -121,7 +118,7 @@ public class MentorRestControllerTest {
         System.out.println("mvcResult = " + mvcResult);
     }
 
-    @DisplayName("Mentor List")
+    @DisplayName("Mentor List Controller")
     @Test
     public void listOfMentor() throws Exception {
         //given
@@ -151,7 +148,7 @@ public class MentorRestControllerTest {
 //        assertThat(mvcResult.getResponse().getContentAsString())
     }
 
-    @DisplayName("Delete Mentor")
+    @DisplayName("Delete Mentor Controller")
     @Test
     public void deleteMentor() throws Exception {
         //given

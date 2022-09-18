@@ -4,6 +4,7 @@ import com.y2829.whai.api.dto.MentorDto;
 import com.y2829.whai.api.entity.Mentor;
 import com.y2829.whai.api.entity.User;
 import com.y2829.whai.api.service.impl.MentorServiceImpl;
+import com.y2829.whai.api.util.CommonUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,8 +12,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.*;
-import org.springframework.data.web.PageableDefault;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -52,9 +54,9 @@ public class MentorServiceTest {
         user.setName("sample");
     }
 
-    @DisplayName("Mentor create")
+    @DisplayName("Create Mentor Service")
     @Test
-    public void mentorCreateTest() {
+    public void createMentor() {
         //given
         Long mentorId = 1L;
         PostMentorRequest request = new PostMentorRequest();
@@ -72,7 +74,7 @@ public class MentorServiceTest {
         verify(mentorService, times(1)).saveMentor(request);
     }
 
-    @DisplayName("update Mentor")
+    @DisplayName("Update Mentor Service")
     @Test
     public void updateMentor() {
         //given
@@ -92,7 +94,7 @@ public class MentorServiceTest {
         assertThat(result).isEqualTo(1L);
     }
 
-    @DisplayName("MentorList")
+    @DisplayName("Mentor List Service")
     @Test
     public void listOfMentor() {
         //given
@@ -100,7 +102,7 @@ public class MentorServiceTest {
         Page<Mentor> pages = new PageImpl<>(mentors);
 
         doReturn(pages).when(mentorService).findAll(any(Pageable.class));
-        Pageable pageable = getPageable();
+        Pageable pageable = CommonUtil.getPageable();
 
         //when
         Page<Mentor> result = mentorService.findAll(pageable);
@@ -109,7 +111,7 @@ public class MentorServiceTest {
         assertThat(result.getContent().size()).isEqualTo(5);
     }
 
-    @DisplayName("delete Mentor")
+    @DisplayName("Delete Mentor Service")
     @Test
     public void deleteMentor() {
         //given
@@ -132,57 +134,5 @@ public class MentorServiceTest {
         }
 
         return mentors;
-    }
-
-    private Pageable getPageable() {
-
-        Pageable pageable = new Pageable() {
-            @Override
-            public int getPageNumber() {
-                return 0;
-            }
-
-            @Override
-            public int getPageSize() {
-                return 0;
-            }
-
-            @Override
-            public long getOffset() {
-                return 0;
-            }
-
-            @Override
-            public Sort getSort() {
-                return null;
-            }
-
-            @Override
-            public Pageable next() {
-                return null;
-            }
-
-            @Override
-            public Pageable previousOrFirst() {
-                return null;
-            }
-
-            @Override
-            public Pageable first() {
-                return null;
-            }
-
-            @Override
-            public Pageable withPage(int pageNumber) {
-                return null;
-            }
-
-            @Override
-            public boolean hasPrevious() {
-                return false;
-            }
-        };
-
-        return pageable;
     }
 }
